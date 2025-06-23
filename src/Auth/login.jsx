@@ -59,8 +59,8 @@ export default function LoginPage() {
             <LeftPanel />
 
             <div className="flex flex-col justify-center gap-2 items-start p-4 md:p-10 md:w-2/5 rounded-lg mt-8 md:mt-0">
-                <h2 className="text-xl text-white font-poppins">Welcome Login System</h2>
-                <p className="text-sm font-poppins text-gray-100 mb-4">
+                <h2 className="text-[38px] text-white">Welcome Login System</h2>
+                <p className="text-md font-poppins text-gray-100 mb-4">
                     Your gateway to seamless transactions and easy payments
                 </p>
 
