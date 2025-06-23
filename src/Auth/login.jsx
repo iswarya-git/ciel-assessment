@@ -91,7 +91,7 @@ export default function LoginPage() {
                         <input id="remember" type="checkbox" className="mr-2 w-4 h-4 border !border-white" />
                         Remember me
                     </label>
-                    <button onClick={handleClick} className="text-sm text-white font-semibold hover:underline font-poppins">
+                    <button onClick={handleClick} className="text-sm text-black md:text-white font-semibold hover:underline font-poppins">
                         Sign Up
                     </button>
                 </div>
