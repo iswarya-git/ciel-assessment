@@ -18,24 +18,25 @@ export default function SignUpPage() {
     const handleRegister = async () => {
         setError('');
         setSuccess('');
-
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !password || !confirmPassword) {
             setError('All fields are required');
             return;
         }
 
+        if (!emailRegex.test(email)) {
+            setError('Please enter a valid email address');
+            return;
+        }
         if (password.length < 8) {
             setError('Password must be at least 8 characters');
             return;
         }
-
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
-
         setLoading(true);
-
         try {
             const res = await fetch(`${API_BASE}register`, {
                 method: 'POST',
@@ -44,9 +45,7 @@ export default function SignUpPage() {
                 },
                 body: JSON.stringify({ email, password })
             });
-
             const data = await res.json();
-
             if (!res.ok) {
                 throw new Error(data.message || 'Registration failed');
             }
@@ -54,12 +53,14 @@ export default function SignUpPage() {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+            navigate('/login')
         } catch (err) {
             setError(err.message);
         } finally {
             setLoading(false);
         }
     };
+
 
     const handleClick = () => {
         navigate('/login');
@@ -119,7 +120,7 @@ export default function SignUpPage() {
                 <button
                     onClick={handleRegister}
                     disabled={loading}
-                    className="w-full bg-white text-black px-6 py-2 rounded-md font-poppins hover:bg-blue-100 transition text-sm"
+                    className="w-full bg-white text-black px-6 py-2 font-semibold rounded-md font-poppins hover:bg-blue-100 transition text-sm"
                 >
                     {loading ? 'Signing up...' : 'Sign Up'}
                 </button>

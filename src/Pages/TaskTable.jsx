@@ -23,7 +23,7 @@ const TaskTable = ({
         <>
             {tasks.length > 0 ? (
                 <>
-                    <div className="hidden sm:block max-h-[350px] overflow-x-auto">
+                    <div className="hidden sm:block h-[350px] overflow-x-auto">
                         <table className="min-w-full text-left border-separate border-spacing-y-3">
                             <thead className="!text-xs !font-normal !text-[#1E3BA3]">
                                 <tr>

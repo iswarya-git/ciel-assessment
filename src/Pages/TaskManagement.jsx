@@ -4,7 +4,7 @@ import TaskTable from "./TaskTable";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 const Task_URL = `${API_BASE}api/tasks`
-console.log("API_BASE", API_BASE); // test it
+
 // API helper functions
 async function addTask(newTask) {
   const res = await fetch(Task_URL, {

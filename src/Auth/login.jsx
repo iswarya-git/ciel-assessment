@@ -14,11 +14,18 @@ export default function LoginPage() {
     const API_BASE = process.env.REACT_APP_API_BASE;
 
 
-
     const handleLogin = async () => {
-        setLoading(true);
         setError('');
-
+        if (!email || !password) {
+            setError('Email and password are required.');
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+        setLoading(true);
         try {
             const res = await fetch(`${API_BASE}login`, {
                 method: 'POST',
@@ -27,9 +34,7 @@ export default function LoginPage() {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
             const data = await res.json();
-
             if (!res.ok) {
                 throw new Error(data.message || 'Login failed');
             }
@@ -37,8 +42,7 @@ export default function LoginPage() {
                 localStorage.setItem('token', data.token);
             }
             console.log("Login success", data);
-            // alert('Login successful!');
-            navigate('/dashboard')
+            navigate('/dashboard');
         } catch (err) {
             setError(err.message);
         } finally {
@@ -95,7 +99,7 @@ export default function LoginPage() {
                 <button
                     onClick={handleLogin}
                     disabled={loading}
-                    className="w-full bg-white text-black px-6 py-2 rounded-md font-poppins hover:bg-blue-100 transition text-sm"
+                    className="w-full bg-white text-black px-6 py-2  font-semibold rounded-md font-poppins hover:bg-blue-100 transition text-sm"
                 >
                     {loading ? 'Signing in...' : 'Sign in'}
                 </button>
