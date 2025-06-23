@@ -69,7 +69,7 @@ export default function SignUpPage() {
         <div className="min-h-screen h-[92vh] flex flex-col md:flex-row justify-between p-4 md:p-8 bg-gray-900 bg-gradient-to-tr from-white to-blue-600">
             <LeftPanel />
             <div className="flex flex-col justify-center gap-2 items-start p-4 md:p-10 md:w-2/5 rounded-lg mt-8 md:mt-0">
-                <h2 className="text-[38px] text-white">Welcome Login System</h2>
+                <h2 className="text-[38px] text-white">Welcome Sign Up System</h2>
                 <p className="text-sm font-poppins text-gray-100 mb-4">
                     Your gateway to seamless transactions and easy payments
                 </p>
