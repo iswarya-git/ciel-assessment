@@ -10,6 +10,8 @@ export default function SignUpPage() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
+    const API_BASE = process.env.REACT_APP_API_BASE;
+
 
     const navigate = useNavigate()
 
@@ -35,7 +37,7 @@ export default function SignUpPage() {
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:8000/register', {
+            const res = await fetch(`${API_BASE}register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

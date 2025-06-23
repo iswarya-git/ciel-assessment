@@ -3,10 +3,11 @@ import AddTaskModal from "./AddTaskModal";
 import TaskTable from "./TaskTable";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
+const Task_URL = `${API_BASE}api/tasks`
 console.log("API_BASE", API_BASE); // test it
 // API helper functions
 async function addTask(newTask) {
-  const res = await fetch(API_BASE, {
+  const res = await fetch(Task_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTask),
@@ -15,7 +16,7 @@ async function addTask(newTask) {
 }
 
 async function updateTask(id, updatedTask) {
-  const res = await fetch(`${API_BASE}/${id}`, {
+  const res = await fetch(`${Task_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedTask),
@@ -24,7 +25,7 @@ async function updateTask(id, updatedTask) {
 }
 
 async function deleteTask(id) {
-  const res = await fetch(`${API_BASE}/${id}`, {
+  const res = await fetch(`${Task_URL}/${id}`, {
     method: "DELETE",
   });
   return res.json();
@@ -42,16 +43,13 @@ const TaskManagement = () => {
 
   useEffect(() => {
     async function fetchTasks() {
-      const data = await fetch(API_BASE).then(res => res.json());
+      const data = await fetch(Task_URL).then(res => res.json());
       setAllTasks(data);
     }
     fetchTasks();
   }, []);
 
-  const fetchTasksFromAPI = async () => {
-    const data = await fetch(API_BASE).then(res => res.json());
-    setAllTasks(data);
-  };
+
 
   const handleAddOrEditTask = async () => {
     if (!newTask.taskName.trim() || !newTask.dueDate) {

@@ -11,6 +11,8 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const API_BASE = process.env.REACT_APP_API_BASE;
+
 
 
     const handleLogin = async () => {
@@ -18,7 +20,7 @@ export default function LoginPage() {
         setError('');
 
         try {
-            const res = await fetch('http://localhost:8000/login', {
+            const res = await fetch(`${API_BASE}login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
